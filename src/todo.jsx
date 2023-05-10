@@ -3,7 +3,7 @@ import "./todo.css"
 import { useState } from 'react';
 
 const getData = () => {
-  
+
   let list = localStorage.getItem('Data')
 
   if (list) {
@@ -13,13 +13,14 @@ const getData = () => {
   }
 }
 
-
 const Todo = () => {
 
   const [inputData, setInputData] = useState('');
   const [items, setItems] = useState(getData());
 
-
+  useEffect(() => {
+    localStorage.setItem('Data', JSON.stringify(items))
+  }, [items])
 
   const addItem = () => {
     if (!inputData) {
